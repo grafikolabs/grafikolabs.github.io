@@ -1,0 +1,22 @@
+name: refresh feeds
+on:
+  schedule:
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node scripts/feed.mjs
+      - name: commit if changed
+        run: |
+          git config user.name "grafiko-bot"
+          git config user.email "actions@github.com"
+          git add feed.json
+          git diff --cached --quiet || git commit -m "refresh feeds"
+          git push
