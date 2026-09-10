@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grafiko Labs × Lutron — 3D Handover Films</title>
+<meta name="description" content="A proposal for cinematic 3D handover films that demonstrate a Lutron residential lighting installation the way a photograph never can.">
+<meta name="theme-color" content="#0a0b0d">
+<!-- Confidential client document on a public host: keep it out of search results. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/icon.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/build/three.module.js",
+    "three/addons/": "./vendor/three/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body data-scene="relax">
+
+<!-- ================= BOOT ================= -->
+<div class="boot" id="boot">
+  <div class="boot-inner">
+    <img class="boot-mark" src="assets/img/wordmark.png" alt="Grafiko Labs">
+    <div class="boot-bar"><i id="bootFill"></i></div>
+    <div class="boot-msg" id="bootMsg">Initialising scene engine</div>
+  </div>
+</div>
+
+<!-- ================= REAL-TIME SET ================= -->
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="stage-veil" aria-hidden="true"></div>
+
+<!-- ================= CHROME ================= -->
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top">
+    <img src="assets/img/icon.png" alt="">
+    <span class="brand-x">×</span>
+    <span class="brand-lutron">LUTRON</span>
+  </a>
+  <nav class="chapters" id="chapterNav" aria-label="Sections"></nav>
+  <a class="pill-cta" href="#next">Pilot at&nbsp;<b>$995</b></a>
+</header>
+
+<div class="scroll-rail" aria-hidden="true"><i id="railFill"></i></div>
+
+<!-- ---------- scene console: readout above the keypad ---------- -->
+<div class="console" id="console">
+
+<aside class="hud" id="hud" aria-label="Scene readout">
+  <div class="hud-head">
+    <span class="hud-dot"></span>
+    <span id="hudScene">Relax</span>
+    <span class="hud-time" id="hudTime">21:30</span>
+    <button id="hudToggle" aria-label="Hide readout">−</button>
+  </div>
+  <div class="hud-rows" id="hudRows"></div>
+  <div class="hud-note" id="hudNote"></div>
+</aside>
+
+<aside class="keypad" id="keypad" aria-label="Scene control">
+  <div class="kp-plate">
+    <div class="kp-head">
+      <span class="kp-engrave" id="kpEngrave">GREAT ROOM</span>
+      <button class="kp-collapse" id="kpCollapse" aria-label="Collapse keypad">−</button>
+    </div>
+    <div class="kp-buttons" id="kpButtons"></div>
+    <div class="kp-shade">
+      <span class="kp-slabel">Shades</span>
+      <div class="kp-rocker">
+        <button data-shade="open" aria-label="Open shades">▲</button>
+        <div class="kp-shadebar"><i id="shadeFill"></i></div>
+        <button data-shade="close" aria-label="Close shades">▼</button>
+      </div>
+    </div>
+    <button class="kp-natural" id="kpNatural">
+      <span class="kp-led"></span>
+      <span>Natural Show<i>sun-tracking</i></span>
+      <span class="kp-clock" id="kpClock">—</span>
+    </button>
+    <div class="kp-foot">Palladiom-style 4-button + raise/lower</div>
+  </div>
+  <button class="kp-open" id="kpOpen" aria-label="Open keypad">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M9 7h6M9 11h6M9 15h6"/></svg>
+  </button>
+</aside>
+
+</div>
+
+<main id="top">
+
+<!-- =================================================================
+     CHAPTER 1 — the argument, played out in the room itself
+================================================================= -->
+<div class="stage-region" id="region-1">
+
+  <section class="ch ch-hero" data-shot="arrival" data-nav="Opening">
+    <div class="wrap">
+      <div class="eyebrow reveal">Proposal · v1.0 · valid 30 days</div>
+      <h1 class="reveal">
+        <span class="h1-line">3D handover films</span>
+        <span class="h1-line h1-thin">for residential lighting</span>
+      </h1>
+      <p class="lede reveal">
+        Lutron delivers complete lighting and shading installations in homes built by partner
+        developers. At handover the owner receives a finished residence — but the thing that
+        makes a Lutron home a <em>Lutron</em> home is invisible in a photograph.
+      </p>
+      <div class="hero-meta reveal">
+        <div><span>Prepared for</span><b>Lutron Electronics</b></div>
+        <div><span>Prepared by</span><b>Grafiko Labs</b></div>
+        <div><span>Engagement</span><b>Per-unit handover film</b></div>
+      </div>
+      <button class="hero-prompt reveal" id="heroPrompt">
+        <span class="pulse"></span>
+        <span>This page is running a live scene engine. Press a button on the keypad — the room,
+        and the document, re-light together.</span>
+      </button>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><i></i>scroll</div>
+  </section>
+
+  <section class="ch" data-shot="living" data-nav="The gap">
+    <div class="wrap narrow">
+      <h2 class="reveal">A still frame can only ever show you one&nbsp;scene.</h2>
+      <p class="reveal">
+        Scenes, tunable white, cove and cabinet layers, sun-tracking shades, keypad presets.
+        None of it reads in a photograph, and none of it can be demonstrated in a five-minute
+        walkthrough on possession day — which is exactly when the owner is least able to absorb it.
+      </p>
+      <p class="reveal">
+        The room in front of you has not reloaded, moved or cut. Only the light changed. That is
+        the entire product, and it is the one thing a brochure cannot carry.
+      </p>
+      <div class="stat-row reveal">
+        <div class="stat"><b>60–80s</b><span>per unit, 4K UHD</span></div>
+        <div class="stat"><b>6</b><span>spaces, standard 3BHK</span></div>
+        <div class="stat"><b>2–3</b><span>scene states per space</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" data-shot="volume" data-nav="Layers">
+    <div class="wrap narrow">
+      <h2 class="reveal">Seven addressable layers, one press.</h2>
+      <p class="reveal">
+        Every fixture in this room belongs to a layer, and every layer carries its own intensity
+        and colour temperature — the same way the scene sits in the processor on site. Watch the
+        readout while you change scenes: nothing is faded globally, each layer travels on its own
+        curve to its own target.
+      </p>
+      <ul class="layer-list" id="layerList"></ul>
+      <p class="fine reveal">
+        Where Lutron supplies IES photometric files for the specified fixtures, we light with those
+        files directly — so beam spread, cutoff and colour rendering in the film match the real
+        installation rather than approximating it.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- =================================================================
+     THE REFERENCE STANDARD
+================================================================= -->
+<section class="sec" id="standard" data-nav="The standard">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">01</span>
+      <h2>The standard you set</h2>
+      <p>
+        The four renders shared with us define the quality bar for this engagement — and they are
+        also a lighting brief. Hover any marker: this is how we read a frame before we build it.
+      </p>
+    </div>
+    <div class="ref-grid" id="refGrid"></div>
+    <p class="fine reveal">Reference renders supplied by Lutron. Our output is benchmarked to match or exceed this standard in motion.</p>
+  </div>
+</section>
+
+<!-- =================================================================
+     CHAPTER 2 — the narrative model, played live
+================================================================= -->
+<div class="stage-region" id="region-2">
+
+  <section class="ch" data-shot="dining" data-nav="Three beats">
+    <div class="wrap narrow">
+      <span class="num reveal">02</span>
+      <h2 class="reveal">Twelve seconds, three beats.</h2>
+      <p class="reveal">
+        This is what makes a short clip feel like a film rather than a turntable render. Every
+        space follows the same structure, so six spaces cut together into one piece instead of six.
+      </p>
+      <div class="beats reveal" id="beats">
+        <div class="beat" data-beat="0"><b>Reveal</b><span>3–4s</span><p>The space enters in a neutral or daylight state. Establishing camera move.</p></div>
+        <div class="beat" data-beat="1"><b>Scene shift</b><span>5–7s</span><p>A keypad press triggers the transition. Cove rises, downlights warm, accents resolve, shades adjust — camera still moving.</p></div>
+        <div class="beat" data-beat="2"><b>Settle</b><span>2–3s</span><p>The space holds in its hero state. Cut.</p></div>
+      </div>
+      <div class="beat-bar"><i id="beatFill"></i><span class="bmark" style="left:25%"></span><span class="bmark" style="left:72%"></span></div>
+      <button class="btn primary reveal" id="playBeats">
+        <span class="btn-ico">▶</span> Play the sequence — Day to Relax
+      </button>
+      <p class="fine">Runs on the live set above, at the real transition rate. Nothing here is a video file.</p>
+    </div>
+  </section>
+
+  <section class="ch" data-shot="settle" data-nav="Scene sets">
+    <div class="wrap">
+      <h2 class="reveal">Scene sets, per space type</h2>
+      <p class="reveal narrow-p">
+        Select a space and the keypad re-engraves itself with that space's programming. This is the
+        list we would build the Space &amp; Scene Brief from at Stage&nbsp;0.
+      </p>
+      <div class="space-grid" id="spaceGrid"></div>
+      <p class="fine reveal">
+        Where Natural Show / sun-tracking is part of the specified system, we compress a full
+        daylight cycle into a six-second time-lapse inside the space — press <b>Natural Show</b> on
+        the keypad to see the behaviour we would be filming.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- =================================================================
+     THE DRAWING → THE FILM  (interactive plan + configurator)
+================================================================= -->
+<section class="sec" id="plan" data-nav="Configure">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">03</span>
+      <h2>From the looping layout to the film</h2>
+      <p>
+        This is the automation lighting looping layout for <b>VTP Manjari V1 — Velvet Villa</b>,
+        as issued. DALI Loop 1 and 2, the Lutron QS curtain runs, every ceiling and wall point.
+        Tap a space to put it in the film and the price builds itself against the rate card.
+      </p>
+    </div>
+
+    <div class="plan-tool reveal">
+      <div class="plan-stage">
+        <div class="plan-tabs">
+          <button class="on" data-floor="ground">Ground floor</button>
+          <button data-floor="first">First floor</button>
+          <span class="plan-src">VARZ Buildon · VTP Group · issued 18 Aug 2025</span>
+        </div>
+        <div class="plan-canvas" id="planCanvas">
+          <img id="planImg" src="assets/img/plan-ground.png" alt="Velvet Villa ground floor automation lighting looping layout">
+          <div class="plan-pins" id="planPins"></div>
+        </div>
+        <div class="plan-legend">
+          <span><i class="t-a"></i>Tier A — hero, 15s, $225</span>
+          <span><i class="t-b"></i>Tier B — standard, 12s, $175</span>
+          <span><i class="t-c"></i>Tier C — compact, 8–10s, $115</span>
+        </div>
+      </div>
+
+      <div class="builder" id="builder">
+        <div class="builder-head">
+          <h3>Your film</h3>
+          <button class="ghost sm" id="resetBuild">Reset to Villa package</button>
+        </div>
+        <ul class="build-list" id="buildList"></ul>
+        <div class="build-sum">
+          <div class="row"><span>Spaces</span><b id="sumSpaces">0</b></div>
+          <div class="row"><span>Runtime</span><b id="sumTime">0s</b></div>
+          <div class="row"><span>Space subtotal</span><b id="sumSpace">$0</b></div>
+          <div class="row"><span>Post-production &amp; delivery</span><b>$165</b></div>
+          <div class="row total"><span>Film total</span><b id="sumTotal">$0</b></div>
+          <div class="row match" id="sumMatch"></div>
+        </div>
+        <p class="fine">
+          Spaces are interchangeable within a tier at no cost. Post-production is charged once per
+          film regardless of space count. Space naming is confirmed against the architect's plan at Stage&nbsp;0.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     PACKAGES
+================================================================= -->
+<section class="sec" id="packages" data-nav="Packages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">04</span>
+      <h2>Packages</h2>
+      <p>Pre-configured from the same rate card, so any unit typology can be quoted from a menu.</p>
+    </div>
+    <div class="pack-grid">
+      <article class="pack reveal">
+        <header><h3>2BHK Compact</h3><span>4 spaces · 1×A 2×B 1×C</span></header>
+        <div class="price">$855</div>
+        <ul><li>45–55 second film</li><li>4K UHD master</li><li>2–3 scene states per space</li><li>Post &amp; delivery included</li></ul>
+      </article>
+      <article class="pack featured reveal">
+        <div class="flag">Most specified</div>
+        <header><h3>3BHK Signature</h3><span>6 spaces · 2×A 2×B 2×C</span></header>
+        <div class="price">$1,195</div>
+        <ul><li>70–80 second film</li><li>4K UHD + ProRes on request</li><li>Personalised titles &amp; end card</li><li>Post &amp; delivery included</li></ul>
+        <table class="worked">
+          <tr><td>Living + Dining (combined)</td><td>A</td><td>$225</td></tr>
+          <tr><td>Kitchen</td><td>A</td><td>$225</td></tr>
+          <tr><td>Master Bedroom</td><td>B</td><td>$175</td></tr>
+          <tr><td>Bedroom 2</td><td>B</td><td>$175</td></tr>
+          <tr><td>Master Bathroom</td><td>C</td><td>$115</td></tr>
+          <tr><td>Common Bath <i>or</i> Walk-in Closet</td><td>C</td><td>$115</td></tr>
+          <tr><td>Post-production &amp; delivery</td><td>—</td><td>$165</td></tr>
+          <tr class="tot"><td>Total</td><td></td><td>$1,195</td></tr>
+        </table>
+      </article>
+      <article class="pack reveal">
+        <header><h3>4BHK / Villa</h3><span>9 spaces · 2×A 4×B 3×C</span></header>
+        <div class="price">$1,660</div>
+        <ul><li>100–115 second film</li><li>4K UHD master</li><li>Both floors, staircase &amp; landing</li><li>Post &amp; delivery included</li></ul>
+      </article>
+    </div>
+    <div class="deliverables reveal">
+      <h3>What Lutron receives, per unit</h3>
+      <div class="del-grid">
+        <div><span>Master film</span><b>60–80s · 3840×2160 · 25/30fps · H.264 MP4</b></div>
+        <div><span>Broadcast master</span><b>Apple ProRes 422 HQ, on request</b></div>
+        <div><span>Coverage</span><b>6 spaces for a standard 3BHK, ~10–15s each</b></div>
+        <div><span>Lighting content</span><b>2–3 programmed scene states per space</b></div>
+        <div><span>Post</span><b>Grade, sound design, licensed music, branded titles &amp; end card</b></div>
+        <div><span>Naming</span><b>Handover-ready convention — Project / Tower / Unit</b></div>
+      </div>
+      <p class="fine">Optional per-unit personalisation: homeowner name in the opening title, builder co-brand lockup, unit number.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     VOLUME
+================================================================= -->
+<section class="sec" id="volume" data-nav="Volume">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">05</span>
+      <h2>The builder-programme model</h2>
+      <p>
+        Lutron's business is tie-ups with developers, which means units repeat. Two mechanisms
+        make that scalable: quarterly volume slabs, and typology reuse. The second one is the
+        one that changes the arithmetic.
+      </p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-side">
+        <label class="ctl">
+          <span>Units committed per quarter <b id="qtyVal">10</b></span>
+          <input type="range" id="qty" min="1" max="40" value="10">
+        </label>
+        <div class="slabs" id="slabs"></div>
+        <div class="calc-out">
+          <div><span>Discount</span><b id="slabDisc">18%</b></div>
+          <div><span>Effective 3BHK price</span><b id="slabPrice">$980</b></div>
+        </div>
+      </div>
+      <div class="calc-side">
+        <h3>Typology reuse — a 120-unit tower</h3>
+        <label class="ctl">
+          <span>Units in the tower <b id="towerVal">120</b></span>
+          <input type="range" id="tower" min="20" max="300" step="10" value="120">
+        </label>
+        <label class="ctl">
+          <span>Distinct typologies <b id="typoVal">4</b></span>
+          <input type="range" id="typo" min="1" max="10" value="4">
+        </label>
+        <label class="ctl">
+          <span>Repeats needing a new finish package <b id="finishVal">55%</b></span>
+          <input type="range" id="finish" min="0" max="100" step="5" value="55">
+        </label>
+        <div class="bars">
+          <div class="bar"><span>Every unit built from scratch</span><i id="barNaive"><em id="naiveVal"></em></i></div>
+          <div class="bar good"><span>With typology reuse</span><i id="barReuse"><em id="reuseVal"></em></i></div>
+        </div>
+        <div class="saving"><b id="savingVal"></b><span id="savingPct"></span></div>
+      </div>
+    </div>
+
+    <div class="reuse-grid reveal">
+      <div><span>First unit of a typology</span><b>Package rate</b><i>4 weeks</i></div>
+      <div><span>Repeat, same typology, new finish package</span><b>$525</b><i>6–8 working days</i></div>
+      <div><span>Repeat, identical finish — name / branding only</span><b>$180</b><i>2–3 working days</i></div>
+    </div>
+    <p class="fine reveal">
+      We recommend Lutron treat the first units of each typology as the investment and the
+      remainder as production. Every fixture we build — Ketra and Rania downlights, Lumaris linear
+      runs, Palladiom / Alisse / Aviena keypads, Sivoia shade assemblies — is retained in a shared
+      calibrated asset library at no additional cost. After the first three projects we expect a
+      20–30% reduction in modelling time on comparable scopes.
+    </p>
+  </div>
+</section>
+
+<!-- =================================================================
+     PIPELINE
+================================================================= -->
+<section class="sec" id="pipeline" data-nav="Pipeline">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">06</span>
+      <h2>Seven stages, four gates</h2>
+      <p>Nothing moves forward without written sign-off at a gate. This is what protects both schedule and budget.</p>
+    </div>
+    <div class="pipe" id="pipe"></div>
+  </div>
+</section>
+
+<!-- =================================================================
+     TIMELINE
+================================================================= -->
+<section class="sec" id="timeline" data-nav="Timeline">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">07</span>
+      <h2>28 days, from complete inputs to delivery</h2>
+      <p>Client review windows are inside the schedule, not outside it.</p>
+    </div>
+    <div class="gantt reveal" id="gantt"></div>
+    <div class="two-col reveal">
+      <div>
+        <h3>Per-space modelling budget</h3>
+        <p>3–4 working days for Tier A, 2–3 for Tier B, 1.5–2 for Tier C. With two modellers in parallel a six-space 3BHK completes first-draft modelling inside 12–14 days as scoped.</p>
+      </div>
+      <div>
+        <h3>Team allocation, per project</h3>
+        <p>2× 3D modellers · 1× lighting &amp; look-dev artist · 1× animator / render TD · 1× editor &amp; motion designer · 1× project lead.</p>
+      </div>
+    </div>
+    <p class="warn reveal">
+      Each gate assumes consolidated written feedback within <b>48 hours</b>. Beyond 3 business days
+      at any gate, final delivery moves day-for-day. Stated not as a penalty, but because a 28-day
+      schedule with four gates has no float to absorb silent weeks.
+    </p>
+  </div>
+</section>
+
+<!-- =================================================================
+     REVISIONS
+================================================================= -->
+<section class="sec" id="revisions" data-nav="Revisions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">08</span>
+      <h2>Revisions</h2>
+      <p>Two consolidated rounds of minor revisions at every review gate, included in the package price.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev inc reveal">
+        <h3><i>✓</i> Included — minor</h3>
+        <ul>
+          <li>Camera timing, speed and hold-length within the approved path</li>
+          <li>Light intensity, CCT and scene-transition timing within the approved scheme</li>
+          <li>Individual prop or accessory swaps</li>
+          <li>Material tone or finish adjustments within the approved palette</li>
+          <li>Colour grade adjustments</li>
+          <li>Title text, logo, name and end-card changes</li>
+          <li>Music track swap from our licensed library</li>
+          <li>Audio level and sound-design adjustments</li>
+        </ul>
+      </div>
+      <div class="rev chg reveal">
+        <h3><i>!</i> Chargeable — change order</h3>
+        <ul>
+          <li>Layout, furniture arrangement or architectural changes after Gate 2</li>
+          <li>Camera path or shot-order changes after Gate 1</li>
+          <li>Adding or removing spaces after scope lock</li>
+          <li>Fixture type, position or lighting-scheme changes after Gate 3</li>
+          <li>Changes to approved materials or finish package after Gate 3</li>
+          <li>Aspect ratio, resolution or duration changes after Gate 1</li>
+          <li>Re-render of an approved space originating on the client side</li>
+          <li>Any third and subsequent revision round within a stage</li>
+          <li>Rush delivery, weekend or public-holiday turnaround</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine reveal">A revision round is one consolidated set of written feedback from Lutron's single point of contact. Feedback arriving in fragments across several days counts as multiple rounds.</p>
+  </div>
+</section>
+
+<!-- =================================================================
+     INPUTS
+================================================================= -->
+<section class="sec" id="inputs" data-nav="Inputs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">09</span>
+      <h2>What we need from Lutron</h2>
+      <p>The 28-day clock starts when these are received in full. Tick through it — this is the checklist we issue at kickoff.</p>
+    </div>
+    <div class="input-grid" id="inputGrid"></div>
+    <div class="input-meter reveal">
+      <div class="im-bar"><i id="imFill"></i></div>
+      <span id="imLabel">0 of 0 ready</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     SCOPE
+================================================================= -->
+<section class="sec" id="scope" data-nav="Scope">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">10</span>
+      <h2>Scope definitions</h2>
+    </div>
+    <div class="frustum reveal">
+      <div class="frustum-copy">
+        <h3>Camera-frustum-limited modelling</h3>
+        <p>
+          We model, texture and light <b>only what the camera sees.</b> Geometry outside the frustum
+          is not built; geometry that appears briefly or at distance is built to an appropriate
+          level of detail.
+        </p>
+        <p>
+          This is a deliberate efficiency decision and it is what makes this price point possible —
+          the entire budget is concentrated on what appears on screen at full quality rather than
+          spread across a complete unseen building. The trade-off: the assets are purpose-built for
+          the approved camera path, not a general-purpose model of the apartment.
+        </p>
+        <p class="pull">This is why camera path changes after Gate 1 are chargeable — a new path reveals geometry that was never built.</p>
+        <p class="fine">If Lutron requires fully-built reusable spaces for VR, configurators or future re-shooting, we quote that separately as a Full Build option at approximately <b>+45%</b> on the space rate.</p>
+      </div>
+      <figure class="frustum-viz" id="frustumViz">
+        <figcaption>Plan view — what the budget is spent on</figcaption>
+      </figure>
+    </div>
+    <div class="excl reveal">
+      <h3>Not included unless separately quoted</h3>
+      <ul id="exclList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     COMMERCIAL
+================================================================= -->
+<section class="sec" id="terms" data-nav="Commercial">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">11</span>
+      <h2>Commercial terms</h2>
+    </div>
+    <div class="two-col wide">
+      <div class="reveal">
+        <h3>Payment schedule</h3>
+        <table class="tbl">
+          <thead><tr><th>Milestone</th><th>Share</th><th>3BHK</th></tr></thead>
+          <tbody>
+            <tr><td>PO confirmation / kickoff</td><td>40%</td><td>$478</td></tr>
+            <tr><td>Gate 3 sign-off — lighting &amp; look-dev approved</td><td>30%</td><td>$359</td></tr>
+            <tr><td>Final delivery, prior to release of masters</td><td>30%</td><td>$358</td></tr>
+          </tbody>
+        </table>
+        <p class="fine">Change orders invoiced with the nearest subsequent milestone. Invoices payable Net 7. Overdue beyond 15 days pauses active production on the affected project.</p>
+        <h3 class="mt">Cancellation</h3>
+        <p class="fine">If cancelled after commencement, Lutron is invoiced for all completed stages plus 50% of the stage in progress, on the distribution shown. The kickoff payment is non-refundable.</p>
+      </div>
+      <div class="reveal">
+        <h3>How the fee is distributed</h3>
+        <p class="fine">Provided for transparency, and because it is how change-order pricing is derived.</p>
+        <div class="dist" id="dist"></div>
+      </div>
+    </div>
+    <div class="ip reveal">
+      <h3>Intellectual property &amp; usage</h3>
+      <div class="ip-grid">
+        <div><b>Licence</b><p>On final payment, Lutron receives a perpetual, worldwide, royalty-free licence to use the films and stills for marketing, sales, handover, training and internal purposes, across all media.</p></div>
+        <div><b>Source files</b><p>Scene and working files remain Grafiko Labs property, available for buyout at 40% of the project fee.</p></div>
+        <div><b>Asset library</b><p>The Lutron fixture library remains Grafiko Labs property — the calibration work it represents is what enables the typology and volume pricing.</p></div>
+        <div><b>Confidentiality</b><p>All client-supplied drawings, schedules and brand materials remain Lutron's property and are treated as confidential. We are happy to execute a mutual NDA.</p></div>
+      </div>
+      <p class="fine">Grafiko Labs retains the right to display the work in its portfolio and showreel unless Lutron requests exclusion in writing at kickoff. All figures in USD, exclusive of applicable taxes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     WHY US
+================================================================= -->
+<section class="sec" id="why" data-nav="Grafiko">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">12</span>
+      <h2>Why Grafiko Labs</h2>
+      <p>A full-stack creative studio with in-house 3D artists, motion designers, video editors and graphic designers.</p>
+    </div>
+    <div class="why-grid">
+      <div class="reveal"><b>One vendor, whole pipeline</b><p>Modelling through final grade under one roof — no coordination overhead between a 3D shop and an edit house, and no gap where the lighting intent gets lost.</p></div>
+      <div class="reveal"><b>Built for volume</b><p>The tier system, typology reuse and the growing fixture library are designed around the reality that Lutron's business is many units, not one showpiece.</p></div>
+      <div class="reveal"><b>Gated process</b><p>Four sign-off points mean Lutron sees and steers the film at every stage, and neither party discovers a problem at the last one.</p></div>
+      <div class="reveal"><b>Capacity to scale</b><p>Additional artist pods run projects in parallel as volume increases, without extending the per-project timeline.</p></div>
+    </div>
+
+    <div class="folio reveal">
+      <div class="folio-head"><h3>Live from the studio</h3><a href="https://grafikolabs.github.io/" target="_blank" rel="noopener">Full portfolio ↗</a></div>
+      <div class="folio-frames">
+        <figure><figcaption>3D Lab</figcaption>
+          <div class="fr-gate" data-src="https://grafikolabs.github.io/3d-lab/"><span>Tap to fly</span></div>
+        </figure>
+        <figure><figcaption>Websites</figcaption>
+          <div class="fr-gate" data-eager data-src="https://grafikolabs.github.io/portfolio-carousel/"><span>Load</span></div>
+        </figure>
+        <figure><figcaption>Brand book</figcaption>
+          <div class="fr-gate" data-eager data-src="https://grafikolabs.github.io/brand-book/"><span>Load</span></div>
+        </figure>
+      </div>
+      <p class="fine">Recent set &amp; environment work includes <b>Privée</b> — a full HNI event build with brand pavilions including Rolex — modelled, lit and rendered in-house.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     CHAPTER 3 — close
+================================================================= -->
+<div class="stage-region" id="region-3">
+  <section class="ch ch-close" data-shot="mezz" data-nav="Next">
+    <div class="wrap narrow" id="next">
+      <span class="num reveal">13</span>
+      <h2 class="reveal">Recommended next steps</h2>
+      <ol class="steps">
+        <li class="reveal"><b>Alignment call</b><span>This week</span><p>Walk through this proposal, confirm the space list and tier assignments for a representative typology.</p></li>
+        <li class="reveal"><b>Pilot project</b><span>4 weeks</span><p>One unit at the 3BHK Signature package, run end-to-end on the full four-week process. Validates quality, pacing and internal approval flow before any volume commitment.</p></li>
+        <li class="reveal"><b>Framework agreement</b><span>On pilot approval</span><p>Rolling quarterly volume slab with typology-based pricing for the first builder programme.</p></li>
+        <li class="reveal"><b>Programme rollout</b><span>Ongoing</span><p>Parallel pods, standing weekly review slot, shared asset library.</p></li>
+      </ol>
+
+      <div class="offer reveal">
+        <div class="offer-l">
+          <span>Pilot, offered at</span>
+          <b>$995</b>
+          <i>17% below list, as a good-faith start</i>
+        </div>
+        <div class="offer-r">
+          <a class="btn primary" href="mailto:grafikolabs@gmail.com?subject=Lutron%20%C3%97%20Grafiko%20Labs%20%E2%80%94%20Pilot%20unit&body=Happy%20to%20proceed%20with%20the%20pilot.%20Suggested%20times%20for%20the%20alignment%20call%3A">Start the pilot</a>
+          <a class="btn ghost" href="https://wa.me/919071119177" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <p class="fine">Proposal validity 30 days from issue. All figures USD, exclusive of applicable taxes. Confidential and intended solely for Lutron Electronics.</p>
+    </div>
+  </section>
+  <!-- second waypoint so the closing chapter drifts rather than sits still -->
+  <div data-shot="settle" aria-hidden="true"></div>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <img src="assets/img/wordmark.png" alt="Grafiko Labs">
+    <div class="foot-links">
+      <a href="mailto:grafikolabs@gmail.com">grafikolabs@gmail.com</a>
+      <a href="tel:+919071119177">+91 90711 19177</a>
+      <a href="https://www.grafikolabs.com/" target="_blank" rel="noopener">grafikolabs.com</a>
+      <a href="https://www.linkedin.com/company/grafiko-labs/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <span class="foot-c">© 2026 Grafiko Labs</span>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+<noscript><p style="padding:40px;color:#eee;font:16px system-ui">This proposal is an interactive document and needs JavaScript enabled. A PDF version is available on request from grafikolabs@gmail.com.</p></noscript>
+</body>
+</html>
