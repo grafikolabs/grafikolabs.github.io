@@ -455,7 +455,13 @@ h1{font-size:clamp(38px,7.2vw,92px); letter-spacing:-.045em}
 
 /* ---------- calculators ---------- */
 .calc{display:grid; grid-template-columns:1fr 1.25fr; gap:22px; align-items:start}
-@media (max-width:900px){.calc{grid-template-columns:1fr}}
+/* with the second panel gone the whole section composes on the centre line */
+#volume .sec-head{max-width:660px; margin-inline:auto; text-align:center; margin-bottom:44px}
+#volume .sec-head p{margin-inline:auto}
+.calc.solo{grid-template-columns:minmax(0,520px); justify-content:center}
+.calc.solo .calc-side{padding:28px 30px}
+.calc.solo .calc-out{justify-content:space-between}
+@media (max-width:900px){.calc{grid-template-columns:1fr} .calc.solo{grid-template-columns:1fr}}
 .calc-side{padding:22px; border:1px solid var(--line); border-radius:16px; background:var(--panel)}
 .ctl{display:block; margin-bottom:18px}
 .ctl span{display:flex; justify-content:space-between; font-size:11.5px; color:var(--dim); margin-bottom:9px}
@@ -475,24 +481,12 @@ input[type=range]::-moz-range-thumb{width:15px; height:15px; border:0; border-ra
 .calc-out{display:flex; gap:28px; padding-top:16px; border-top:1px solid var(--line)}
 .calc-out span{display:block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); margin-bottom:4px}
 .calc-out b{font-size:24px; font-weight:200; letter-spacing:-.03em; color:var(--accent)}
-.bars{margin-top:22px; display:flex; flex-direction:column; gap:14px}
-.bar span{display:block; font-size:11px; color:var(--dim); margin-bottom:6px}
-.bar i{display:block; height:26px; border-radius:6px; background:rgba(255,255,255,.10);
-  position:relative; transition:width .5s var(--ease); min-width:60px}
-.bar em{position:absolute; right:9px; top:50%; transform:translateY(-50%); font-style:normal;
-  font-size:11.5px; font-variant-numeric:tabular-nums; color:var(--ink)}
-.bar.good i{background:linear-gradient(90deg, rgba(95,191,155,.30), rgba(95,191,155,.55))}
-.saving{margin-top:20px; padding-top:16px; border-top:1px solid var(--line);
-  display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
-.saving b{white-space:nowrap}
-.saving b{font-size:30px; font-weight:200; letter-spacing:-.035em; color:var(--ok)}
-.saving span{font-size:11.5px; color:var(--dim)}
-.reuse-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px}
-@media (max-width:820px){.reuse-grid{grid-template-columns:1fr}}
-.reuse-grid div{padding:18px; border:1px solid var(--line); border-radius:13px; background:var(--panel)}
-.reuse-grid span{display:block; font-size:11px; color:var(--dim); margin-bottom:9px; min-height:32px}
-.reuse-grid b{display:block; font-size:24px; font-weight:300; letter-spacing:-.03em; color:var(--accent)}
-.reuse-grid i{font-style:normal; font-size:10.5px; color:var(--dim)}
+.slab-notes{display:grid; grid-template-columns:repeat(3,1fr); gap:34px; margin:44px auto 0;
+  max-width:940px; padding-top:30px; border-top:1px solid var(--line)}
+@media (max-width:820px){.slab-notes{grid-template-columns:1fr; gap:26px}}
+.slab-notes b{display:block; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px}
+.slab-notes p{margin:0; font-size:12.5px; line-height:1.62; color:var(--dim)}
 
 /* ---------- pipeline ---------- */
 .pipe{display:flex; flex-direction:column; gap:1px}
@@ -518,8 +512,6 @@ input[type=range]::-moz-range-thumb{width:15px; height:15px; border:0; border-ra
 .gate b{font-weight:600}
 .why-note{margin-top:12px; padding-left:14px; border-left:2px solid var(--line);
   font-size:11.5px; font-style:italic; color:var(--dim); max-width:600px}
-.new-tag{display:inline-block; margin-left:9px; font-size:8.5px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ok); border:1px solid rgba(95,191,155,.4); border-radius:4px; padding:1.5px 6px; vertical-align:middle}
 
 /* ---------- gantt ---------- */
 .gantt{border:1px solid var(--line); border-radius:16px; padding:20px; background:var(--panel); overflow:auto}
@@ -652,7 +644,8 @@ input[type=range]::-moz-range-thumb{width:15px; height:15px; border:0; border-ra
   border-radius:12px; padding-inline:14px}
 .steps li::before{content:counter(s,decimal-leading-zero); position:absolute; left:0; top:20px;
   font-size:11px; color:var(--accent); letter-spacing:.1em}
-.steps b{font-size:15px; display:inline-block; margin-right:12px}
+/* only the step title, not bold runs inside the body copy */
+.steps > li > b{font-size:15px; display:inline-block; margin-right:12px}
 .steps span{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim)}
 .steps p{margin:7px 0 0; font-size:12.5px; color:var(--dim); max-width:520px}
 .offer{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px;

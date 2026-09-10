@@ -288,29 +288,6 @@ export function initUI(stage) {
   }
   qty.addEventListener('input', renderSlab); renderSlab();
 
-  const tower = $('#tower'), typo = $('#typo'), finish = $('#finish');
-  function renderReuse() {
-    const N = +tower.value, T = Math.min(+typo.value, N), f = +finish.value / 100;
-    $('#towerVal').textContent = N; $('#typoVal').textContent = T;
-    $('#finishVal').textContent = Math.round(f * 100) + '%';
-
-    const repeats = Math.max(0, N - T);
-    const newFin = Math.round(repeats * f);
-    const same = repeats - newFin;
-    const reuse = T * 1195 + newFin * 525 + same * 180;
-    const naive = N * 1195;
-
-    $('#naiveVal').textContent = money(naive);
-    $('#reuseVal').textContent = money(reuse);
-    $('#barNaive').style.width = '100%';
-    $('#barReuse').style.width = Math.max(14, (reuse / naive) * 100).toFixed(1) + '%';
-    $('#savingVal').textContent = money(naive - reuse);
-    $('#savingPct').textContent =
-      `saved — ${Math.round((1 - reuse / naive) * 100)}% below rebuilding every unit. ${T} first-of-typology at package rate, ${newFin} re-dressed at $525, ${same} re-branded at $180.`;
-  }
-  [tower, typo, finish].forEach(i => i.addEventListener('input', renderReuse));
-  renderReuse();
-
   /* ==============================================================
      PIPELINE
   ============================================================== */
@@ -320,7 +297,7 @@ export function initUI(stage) {
     row.setAttribute('role', 'button');
     row.setAttribute('tabindex', '0');
     row.innerHTML = `<div class="sn">${s.n}</div>
-      <div><h3>${s.t}${s.isNew ? '<span class="new-tag">added by us</span>' : ''}<i class="sx"></i></h3>
+      <div><h3>${s.t}<i class="sx"></i></h3>
         <div class="body"><p>${s.b}</p>
           ${s.gate ? `<div class="gate"><b>◆</b> ${s.gate}</div>` : ''}
           ${s.why ? `<p class="why-note">${s.why}</p>` : ''}
@@ -332,7 +309,7 @@ export function initUI(stage) {
     pipe.appendChild(row);
   });
   pipe.appendChild(el('p', 'fine reveal',
-    'Steps we added to the original outline are tagged. Each exists to prevent an expensive correction later in the pipeline.'));
+    'Every stage here earns its place by preventing a more expensive correction further down the pipeline.'));
 
   /* ==============================================================
      GANTT

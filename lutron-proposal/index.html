@@ -42,7 +42,7 @@
     <span class="brand-lutron">LUTRON</span>
   </a>
   <nav class="chapters" id="chapterNav" aria-label="Sections"></nav>
-  <a class="pill-cta" href="#next">Pilot at&nbsp;<b>$995</b></a>
+  <a class="pill-cta" href="#next">Pilot at&nbsp;<b>$1,135</b></a>
 </header>
 
 <div class="scroll-rail" aria-hidden="true"><i id="railFill"></i></div>
@@ -343,13 +343,13 @@
       <span class="num">05</span>
       <h2>The builder-programme model</h2>
       <p>
-        Lutron's business is tie-ups with developers, which means units repeat. Two mechanisms
-        make that scalable: quarterly volume slabs, and typology reuse. The second one is the
-        one that changes the arithmetic.
+        Lutron's business is tie-ups with developers, which means units repeat. Pricing is
+        structured to reward that: commit to a quarterly volume and the per-film rate steps
+        down with the band.
       </p>
     </div>
 
-    <div class="calc reveal">
+    <div class="calc solo reveal">
       <div class="calc-side">
         <label class="ctl">
           <span>Units committed per quarter <b id="qtyVal">10</b></span>
@@ -361,40 +361,32 @@
           <div><span>Effective 3BHK price</span><b id="slabPrice">$980</b></div>
         </div>
       </div>
-      <div class="calc-side">
-        <h3>Typology reuse — a 120-unit tower</h3>
-        <label class="ctl">
-          <span>Units in the tower <b id="towerVal">120</b></span>
-          <input type="range" id="tower" min="20" max="300" step="10" value="120">
-        </label>
-        <label class="ctl">
-          <span>Distinct typologies <b id="typoVal">4</b></span>
-          <input type="range" id="typo" min="1" max="10" value="4">
-        </label>
-        <label class="ctl">
-          <span>Repeats needing a new finish package <b id="finishVal">55%</b></span>
-          <input type="range" id="finish" min="0" max="100" step="5" value="55">
-        </label>
-        <div class="bars">
-          <div class="bar"><span>Every unit built from scratch</span><i id="barNaive"><em id="naiveVal"></em></i></div>
-          <div class="bar good"><span>With typology reuse</span><i id="barReuse"><em id="reuseVal"></em></i></div>
-        </div>
-        <div class="saving"><b id="savingVal"></b><span id="savingPct"></span></div>
-      </div>
     </div>
 
-    <div class="reuse-grid reveal">
-      <div><span>First unit of a typology</span><b>Package rate</b><i>4 weeks</i></div>
-      <div><span>Repeat, same typology, new finish package</span><b>$525</b><i>6–8 working days</i></div>
-      <div><span>Repeat, identical finish — name / branding only</span><b>$180</b><i>2–3 working days</i></div>
+    <div class="slab-notes">
+      <div class="reveal">
+        <b>How a slab applies</b>
+        <p>
+          To a volume committed under a single PO or a rolling framework agreement — priced at the
+          band rate from the first film onward, not counted up retrospectively at quarter end.
+        </p>
+      </div>
+      <div class="reveal">
+        <b>Why the rate moves</b>
+        <p>
+          A known quarterly volume lets us hold a standing pod on the account and schedule renders
+          against a predictable load, instead of re-forming a team around each unit as it arrives.
+        </p>
+      </div>
+      <div class="reveal">
+        <b>What carries forward</b>
+        <p>
+          Every Lutron fixture we build — Ketra and Rania downlights, Lumaris linear runs,
+          Palladiom / Alisse / Aviena keypads, Sivoia shade assemblies — is retained in a shared,
+          calibrated asset library, at no additional cost to Lutron.
+        </p>
+      </div>
     </div>
-    <p class="fine reveal">
-      We recommend Lutron treat the first units of each typology as the investment and the
-      remainder as production. Every fixture we build — Ketra and Rania downlights, Lumaris linear
-      runs, Palladiom / Alisse / Aviena keypads, Sivoia shade assemblies — is retained in a shared
-      calibrated asset library at no additional cost. After the first three projects we expect a
-      20–30% reduction in modelling time on comparable scopes.
-    </p>
   </div>
 </section>
 
@@ -555,7 +547,7 @@
           <thead><tr><th>Milestone</th><th>Share</th><th>3BHK</th></tr></thead>
           <tbody>
             <tr><td>PO confirmation / kickoff</td><td>40%</td><td>$478</td></tr>
-            <tr><td>Gate 3 sign-off — lighting &amp; look-dev approved</td><td>30%</td><td>$359</td></tr>
+            <tr><td>Gate 2 sign-off — detailed modelling approved</td><td>30%</td><td>$359</td></tr>
             <tr><td>Final delivery, prior to release of masters</td><td>30%</td><td>$358</td></tr>
           </tbody>
         </table>
@@ -574,7 +566,7 @@
       <div class="ip-grid">
         <div><b>Licence</b><p>On final payment, Lutron receives a perpetual, worldwide, royalty-free licence to use the films and stills for marketing, sales, handover, training and internal purposes, across all media.</p></div>
         <div><b>Source files</b><p>Scene and working files remain Grafiko Labs property, available for buyout at 40% of the project fee.</p></div>
-        <div><b>Asset library</b><p>The Lutron fixture library remains Grafiko Labs property — the calibration work it represents is what enables the typology and volume pricing.</p></div>
+        <div><b>Asset library</b><p>The Lutron fixture library remains Grafiko Labs property — the calibration work it represents is what enables the volume pricing.</p></div>
         <div><b>Confidentiality</b><p>All client-supplied drawings, schedules and brand materials remain Lutron's property and are treated as confidential. We are happy to execute a mutual NDA.</p></div>
       </div>
       <p class="fine">Grafiko Labs retains the right to display the work in its portfolio and showreel unless Lutron requests exclusion in writing at kickoff. All figures in USD, exclusive of applicable taxes.</p>
@@ -594,7 +586,7 @@
     </div>
     <div class="why-grid">
       <div class="reveal"><b>One vendor, whole pipeline</b><p>Modelling through final grade under one roof — no coordination overhead between a 3D shop and an edit house, and no gap where the lighting intent gets lost.</p></div>
-      <div class="reveal"><b>Built for volume</b><p>The tier system, typology reuse and the growing fixture library are designed around the reality that Lutron's business is many units, not one showpiece.</p></div>
+      <div class="reveal"><b>Built for volume</b><p>The tier system, the quarterly volume slabs and the growing fixture library are designed around the reality that Lutron's business is many units, not one showpiece.</p></div>
       <div class="reveal"><b>Gated process</b><p>Four sign-off points mean Lutron sees and steers the film at every stage, and neither party discovers a problem at the last one.</p></div>
       <div class="reveal"><b>Capacity to scale</b><p>Additional artist pods run projects in parallel as volume increases, without extending the per-project timeline.</p></div>
     </div>
@@ -627,16 +619,16 @@
       <h2 class="reveal">Recommended next steps</h2>
       <ol class="steps">
         <li class="reveal"><b>Alignment call</b><span>This week</span><p>Walk through this proposal, confirm the space list and tier assignments for a representative typology.</p></li>
-        <li class="reveal"><b>Pilot project</b><span>4 weeks</span><p>One unit at the 3BHK Signature package, run end-to-end on the full four-week process. Validates quality, pacing and internal approval flow before any volume commitment.</p></li>
-        <li class="reveal"><b>Framework agreement</b><span>On pilot approval</span><p>Rolling quarterly volume slab with typology-based pricing for the first builder programme.</p></li>
+        <li class="reveal"><b>Pilot project</b><span>4 weeks</span><p>One unit at the 3BHK Signature package, run end-to-end on the full four-week process. Validates quality, pacing and internal approval flow before any volume commitment. Offered at <b>$1,135</b>, 5% below list.</p></li>
+        <li class="reveal"><b>Framework agreement</b><span>On pilot approval</span><p>Rolling quarterly volume slab across the first builder programme.</p></li>
         <li class="reveal"><b>Programme rollout</b><span>Ongoing</span><p>Parallel pods, standing weekly review slot, shared asset library.</p></li>
       </ol>
 
       <div class="offer reveal">
         <div class="offer-l">
           <span>Pilot, offered at</span>
-          <b>$995</b>
-          <i>17% below list, as a good-faith start</i>
+          <b>$1,135</b>
+          <i>5% below list, as a good-faith start</i>
         </div>
         <div class="offer-r">
           <a class="btn primary" href="mailto:grafikolabs@gmail.com?subject=Lutron%20%C3%97%20Grafiko%20Labs%20%E2%80%94%20Pilot%20unit&body=Happy%20to%20proceed%20with%20the%20pilot.%20Suggested%20times%20for%20the%20alignment%20call%3A">Start the pilot</a>

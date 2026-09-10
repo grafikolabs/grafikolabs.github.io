@@ -107,14 +107,12 @@ export const STAGES = [
   {
     n: 'Stage 0', t: 'Onboarding & asset intake',
     b: 'Kickoff call, scope lock, space list confirmed, and collection of all client inputs. We produce a <b>Space &amp; Scene Brief</b> — one page per space listing every fixture, its scene states and the intended camera treatment. Lutron signs this off before any 3D work begins.',
-    isNew: true,
   },
   {
     n: 'Stage 1', t: 'Pre-production — camera blocking & greybox',
     b: 'We build a low-detail greybox of every space in scope and block the full camera path end to end, cut to a rough timeline with placeholder timing. Lutron sees the entire film\'s structure and pacing as an animatic before a single detailed asset exists.',
     gate: 'Review Gate 1 — camera path, space order, pacing and film structure.',
     why: 'This is the cheapest possible moment to change the film. A camera path change here costs nothing; the same change after modelling costs real money.',
-    isNew: true,
   },
   {
     n: 'Stage 2', t: 'Detailed modelling',
@@ -126,7 +124,6 @@ export const STAGES = [
     b: 'PBR material build across all surfaces, followed by full lighting design. Where Lutron supplies IES photometric files we light with those files directly. Delivered for review as <b>still frames — one per space, per scene state</b> — plus one moving test clip.',
     gate: 'Review Gate 3 — materials, finishes and the full lighting scheme. The critical commercial gate.',
     why: 'Still-frame approval before animation is the single largest cost control in this pipeline. Approving lighting on stills costs minutes of render time. Discovering a lighting problem after final render costs days.',
-    isNew: true,
   },
   {
     n: 'Stage 4', t: 'Animation & final render',
@@ -136,7 +133,6 @@ export const STAGES = [
     n: 'Stage 5', t: 'Post-production',
     b: 'Assembly edit, compositing and beauty passes, colour grade, keypad and app UI overlays where specified, titles and end card, sound design and licensed music, and a technical QC pass — banding, flicker, denoise artefacts, colour-space consistency.',
     gate: 'Review Gate 4 — final cut.',
-    isNew: true,
   },
   {
     n: 'Stage 6', t: 'Delivery & handover',
